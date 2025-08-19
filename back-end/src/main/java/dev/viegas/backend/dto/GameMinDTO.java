@@ -1,6 +1,5 @@
 package dev.viegas.backend.dto;
 
-
 import dev.viegas.backend.entities.Game;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -20,7 +20,7 @@ public class GameController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GameMinDTO>> getAll(){
+    public ResponseEntity<List<GameMinDTO>> getAll() {
         return ResponseEntity.ok(gameService.getAll());
     }
 }
