@@ -1,6 +1,5 @@
 package dev.viegas.backend.controllers;
 
-import dev.viegas.backend.dto.GameDTO;
 import dev.viegas.backend.dto.GameListDTO;
 import dev.viegas.backend.dto.GameMinDTO;
 import dev.viegas.backend.services.GameListService;
@@ -18,13 +17,20 @@ import java.util.List;
 public class GameListController {
 
     private final GameListService gameListService;
+    private final GameService gameService;
 
-    public GameListController(GameListService gameListService) {
+    public GameListController(GameListService gameListService, GameService gameService) {
         this.gameListService = gameListService;
+        this.gameService = gameService;
     }
 
     @GetMapping
     public ResponseEntity<List<GameListDTO>> getAll() {
         return ResponseEntity.ok(gameListService.getAll());
+    }
+
+    @GetMapping(value = "/{id}/games")
+    public ResponseEntity<List<GameMinDTO>> getByList(@PathVariable Long id) {
+        return ResponseEntity.ok(gameService.getByList(id));
     }
 }

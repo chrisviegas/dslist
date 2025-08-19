@@ -3,6 +3,7 @@ package dev.viegas.backend.services;
 import dev.viegas.backend.dto.GameDTO;
 import dev.viegas.backend.dto.GameMinDTO;
 import dev.viegas.backend.entities.Game;
+import dev.viegas.backend.projections.GameMinProjection;
 import dev.viegas.backend.repositories.GameRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,5 +29,11 @@ public class GameService {
     @Transactional(readOnly = true)
     public GameDTO getById(Long id) {
         return new GameDTO(gameRepository.findById(id).get());
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> getByList(Long id) {
+        List<GameMinProjection> games = gameRepository.searchByList(id);
+        return games.stream().map(GameMinDTO::new).toList();
     }
 }

@@ -1,6 +1,7 @@
 package dev.viegas.backend.dto;
 
 import dev.viegas.backend.entities.Game;
+import dev.viegas.backend.projections.GameMinProjection;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,5 +21,13 @@ public class GameMinDTO {
         year = entity.getYear();
         title = entity.getTitle();
         id = entity.getId();
+    }
+
+    public GameMinDTO(GameMinProjection projection) {
+        shortDescription = projection.getShortDescription();
+        imgUrl = projection.getImgUrl();
+        year = projection.getYear();
+        title = projection.getTitle();
+        id = projection.getId();
     }
 }
